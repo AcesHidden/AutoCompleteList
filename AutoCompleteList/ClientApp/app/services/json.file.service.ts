@@ -13,11 +13,9 @@ export class JSONFileService {
         return this.http.get(this.originUrl + url)
             .toPromise()
             .then(response => {
-                var retVal: T = {} as T;
-                retVal = <T>JSON.parse(response.text());
-                return retVal;
+                return <T>JSON.parse(response.text());
             }).catch(ex => {
-                
+                //here we would log or display any errors
             });
     }
 }
