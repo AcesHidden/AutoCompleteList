@@ -3,7 +3,10 @@
   .auto-list{
     border:1px solid black;
     width:150px;
+    max-height:20px;
+    overflow:hidden;
     display:block;
+    margin: 10px 0px 10px;
   }
 
   .multi-container {
@@ -11,6 +14,7 @@
     width:150px;
     overflow:auto;
     position:absolute;
+    top:88px;
     background-color:white;
     border:1px solid black;
     cursor:pointer;
@@ -20,15 +24,20 @@
       display:block;
     }
 
+      .multi-container span.highlighted{
+        background-color:blue;
+        color:white;
+      }
+
 </style>
 
-<div><span contenteditable="true" class="auto-list" id="ListSearch">{{selectedItem.label}}</span></div>
-<div class="multi-container" [style.display]="searchResults.length > 0 ? 'block' : 'none'">
+<div><input type="text" class="auto-list" id="ListSearch" [ngModel]="selectedItem.label"/></div>
+<div id="Results" class="multi-container" [style.display]="searchResults.length > 0 ? 'block' : 'none'">
   <span *ngFor="let result of searchResults"
         (click)="selectItem(result)"
-        id="{{result.value}}">
-    {{ result.label }}
+        id="{{result.value}}"
+        [class]="result.isHighlighted ? 'highlighted' : ''"
+        >
+        {{ result.label }}
   </span>
 </div>
-<div>Label: {{selectedItem.label}}</div>
-<div>Value: {{selectedItem.value}}</div>
