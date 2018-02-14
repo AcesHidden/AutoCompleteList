@@ -33,7 +33,6 @@ export class AutoListComponent implements AfterViewInit{
         var ele = document.getElementById("ListSearch");
         if (ele != null) {
             ele.onkeyup = (ev: KeyboardEvent): any => {
-                console.log("keyCode: " + ev.keyCode);
                 if (ev.keyCode == 40 && this.searchResults.length > 0 && this.highlightedIndex < this.searchResults.length - 1) {
                     this.searchResults[this.highlightedIndex].isHighlighted = false;
                     this.searchResults[++this.highlightedIndex].isHighlighted = true;
@@ -85,10 +84,6 @@ export class AutoListComponent implements AfterViewInit{
                         this.onSelection.emit(this.selectedItem);
                     }
                 }
-
-                console.log("Selected: " + this.selectedItem.label);
-                console.log("Results: " + this.searchResults);
-
             };
         }
     }
